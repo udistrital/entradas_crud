@@ -1,6 +1,6 @@
 # ENTRADAS CRUD
 
-API CRUD para el módulo de entradas de la plataforma ARKA II. El proyecto está escrito en el lenguaje GO, generado mediante el [framework beego](https://beego.me/).
+API CRUD para el módulo de entradas del sistema ARKA II. El proyecto está escrito en el lenguaje GO, generado mediante el [framework beego](https://beego.me/).
 
 ## Modelo de Datos
 ![entrada](https://user-images.githubusercontent.com/23342808/61749331-1e6a5580-ad68-11e9-8698-8523ffe3f792.png)
