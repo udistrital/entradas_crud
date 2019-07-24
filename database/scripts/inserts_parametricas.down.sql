@@ -1,0 +1,1 @@
+delete from entradas.tipo_entrada;
