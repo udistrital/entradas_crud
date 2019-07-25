@@ -32,10 +32,10 @@ func main() {
 		AllowCredentials: true,
 	}))
 
-	logPath := "{\"filename\":\""
+	/*logPath := "{\"filename\":\""
 	logPath += beego.AppConfig.String("logPath")
 	logPath += "\"}"
-	logs.SetLogger(logs.AdapterFile, logPath)
+	logs.SetLogger(logs.AdapterFile, logPath)*/
 
 	beego.ErrorController(&customerror.CustomErrorController{})
 	apistatus.Init()
