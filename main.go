@@ -4,7 +4,7 @@ import (
 	_ "github.com/udistrital/entradas_crud/routers"
 
 	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/logs"
+	//"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/lib/pq"
