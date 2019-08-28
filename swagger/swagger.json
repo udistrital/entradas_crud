@@ -67,8 +67,8 @@
                             "$ref": "#/definitions/models.EntradaElemento"
                         }
                     },
-                    "404": {
-                        "description": "not found resource"
+                    "403": {
+                        "description": ""
                     }
                 }
             },
@@ -93,8 +93,8 @@
                     "201": {
                         "description": "{int} models.EntradaElemento"
                     },
-                    "400": {
-                        "description": "the request contains incorrect syntax"
+                    "403": {
+                        "description": "body is empty"
                     }
                 }
             }
@@ -122,8 +122,8 @@
                             "$ref": "#/definitions/models.EntradaElemento"
                         }
                     },
-                    "404": {
-                        "description": "not found resource"
+                    "403": {
+                        "description": ":id is empty"
                     }
                 }
             },
@@ -158,8 +158,8 @@
                             "$ref": "#/definitions/models.EntradaElemento"
                         }
                     },
-                    "400": {
-                        "description": "the request contains incorrect syntax"
+                    "403": {
+                        "description": ":id is not int"
                     }
                 }
             },
@@ -182,8 +182,8 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "404": {
-                        "description": "not found resource"
+                    "403": {
+                        "description": "id is empty"
                     }
                 }
             }
@@ -240,8 +240,8 @@
                             "$ref": "#/definitions/models.TipoEntrada"
                         }
                     },
-                    "404": {
-                        "description": "not found resource"
+                    "403": {
+                        "description": ""
                     }
                 }
             },
@@ -266,8 +266,8 @@
                     "201": {
                         "description": "{int} models.TipoEntrada"
                     },
-                    "400": {
-                        "description": "the request contains incorrect syntax"
+                    "403": {
+                        "description": "body is empty"
                     }
                 }
             }
@@ -295,8 +295,8 @@
                             "$ref": "#/definitions/models.TipoEntrada"
                         }
                     },
-                    "404": {
-                        "description": "not found resource"
+                    "403": {
+                        "description": ":id is empty"
                     }
                 }
             },
@@ -331,8 +331,8 @@
                             "$ref": "#/definitions/models.TipoEntrada"
                         }
                     },
-                    "400": {
-                        "description": "the request contains incorrect syntax"
+                    "403": {
+                        "description": ":id is not int"
                     }
                 }
             },
@@ -355,8 +355,8 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "404": {
-                        "description": "not found resource"
+                    "403": {
+                        "description": "id is empty"
                     }
                 }
             }
@@ -374,11 +374,18 @@
                 "Activo": {
                     "type": "boolean"
                 },
+                "Consecutivo": {
+                    "type": "string"
+                },
                 "ContratoId": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "DocumentoContableId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ElementoId": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -395,9 +402,6 @@
                     "format": "int64"
                 },
                 "Importacion": {
-                    "type": "boolean"
-                },
-                "MovimientoId": {
                     "type": "string"
                 },
                 "Observacion": {
@@ -409,6 +413,9 @@
                 },
                 "TipoEntradaId": {
                     "$ref": "#/definitions/models.TipoEntrada"
+                },
+                "Vigencia": {
+                    "type": "string"
                 }
             }
         },
