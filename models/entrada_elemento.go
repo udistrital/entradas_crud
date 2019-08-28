@@ -11,12 +11,12 @@ import (
 )
 
 type EntradaElemento struct {
-	Id                  int          `orm:"column(id);pk"`
+	Id                  int          `orm:"column(id);pk;auto"`
 	Solicitante         int          `orm:"column(solicitante);null"`
 	Observacion         string       `orm:"column(observacion);null"`
-	Importacion         string       `orm:"column(importacion);null"`
-	FechaCreacion       time.Time    `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion   time.Time    `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	Importacion         bool         `orm:"column(importacion);null"`
+	FechaCreacion       time.Time    `orm:"auto_now;column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion   time.Time    `orm:"auto_now;column(fecha_modificacion);type(timestamp without time zone)"`
 	Activo              bool         `orm:"column(activo)"`
 	TipoEntradaId       *TipoEntrada `orm:"column(tipo_entrada_id);rel(fk)"`
 	ActaRecibidoId      int          `orm:"column(acta_recibido_id)"`
@@ -24,7 +24,7 @@ type EntradaElemento struct {
 	ElementoId          int          `orm:"column(elemento_id);null"`
 	DocumentoContableId int          `orm:"column(documento_contable_id)"`
 	Consecutivo         string       `orm:"column(consecutivo)"`
-	Vigencia            string       `orm:"column(vigencia)"`
+	Vigencia            float64      `orm:"column(vigencia)"`
 }
 
 func (t *EntradaElemento) TableName() string {
@@ -59,7 +59,7 @@ func GetEntradaElementoById(id int) (v *EntradaElemento, err error) {
 func GetAllEntradaElemento(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(EntradaElemento))
+	qs := o.QueryTable(new(EntradaElemento)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
