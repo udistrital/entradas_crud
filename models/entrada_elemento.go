@@ -24,7 +24,7 @@ type EntradaElemento struct {
 	ElementoId          int          `orm:"column(elemento_id);null"`
 	DocumentoContableId int          `orm:"column(documento_contable_id)"`
 	Consecutivo         string       `orm:"column(consecutivo)"`
-	Vigencia            float64      `orm:"column(vigencia)"`
+	Vigencia            string       `orm:"column(vigencia)"`
 }
 
 func (t *EntradaElemento) TableName() string {

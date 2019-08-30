@@ -415,8 +415,7 @@
                     "$ref": "#/definitions/models.TipoEntrada"
                 },
                 "Vigencia": {
-                    "type": "number",
-                    "format": "double"
+                    "type": "string"
                 }
             }
         },
