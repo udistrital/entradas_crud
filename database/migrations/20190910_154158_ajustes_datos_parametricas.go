@@ -20,17 +20,11 @@ func init() {
 // Run the migrations
 func (m *AjustesDatosParametricas_20190910_154158) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
-	m.SQL("UPDATE entradas.tipo_entrada
-	SET nombre = 'Adquisición'
-	WHERE
-	   nombre = 'Adquisicón';")
+	m.SQL("UPDATE entradas.tipo_entrada SET nombre = 'Adquisición' WHERE nombre = 'Adquisicón';")
 }
 
 // Reverse the migrations
 func (m *AjustesDatosParametricas_20190910_154158) Down() {
 	// use m.SQL("DROP TABLE ...") to reverse schema update
-	m.SQL("UPDATE entradas.tipo_entrada
-	SET nombre = 'Adquisicón'
-	WHERE
-	   nombre = 'Adquisición';")
+	m.SQL("UPDATE entradas.tipo_entrada SET nombre = 'Adquisicón' WHERE nombre = 'Adquisición';")
 }
