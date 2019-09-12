@@ -18,8 +18,8 @@ type TipoEntrada struct {
 	Activo            bool      `orm:"column(activo)"`
 	NumeroOrden       float64   `orm:"column(numero_orden);null"`
 	Clasificacion     string    `orm:"column(clasificacion);null"`
-	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	FechaCreacion     time.Time `orm:"auto_now;column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion time.Time `orm:"auto_now;column(fecha_modificacion);type(timestamp without time zone)"`
 }
 
 func (t *TipoEntrada) TableName() string {
@@ -54,7 +54,7 @@ func GetTipoEntradaById(id int) (v *TipoEntrada, err error) {
 func GetAllTipoEntrada(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(TipoEntrada))
+	qs := o.QueryTable(new(TipoEntrada)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute

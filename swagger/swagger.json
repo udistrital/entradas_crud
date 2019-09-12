@@ -374,11 +374,18 @@
                 "Activo": {
                     "type": "boolean"
                 },
+                "Consecutivo": {
+                    "type": "string"
+                },
                 "ContratoId": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "DocumentoContableId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ElementoId": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -397,9 +404,6 @@
                 "Importacion": {
                     "type": "boolean"
                 },
-                "MovimientoId": {
-                    "type": "string"
-                },
                 "Observacion": {
                     "type": "string"
                 },
@@ -409,6 +413,9 @@
                 },
                 "TipoEntradaId": {
                     "$ref": "#/definitions/models.TipoEntrada"
+                },
+                "Vigencia": {
+                    "type": "string"
                 }
             }
         },
