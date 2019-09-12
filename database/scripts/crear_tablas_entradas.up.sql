@@ -1,18 +1,3 @@
--- Database generated with pgModeler (PostgreSQL Database Modeler).
--- pgModeler  version: 0.9.1
--- PostgreSQL version: 9.5
--- Project Site: pgmodeler.io
--- Model Author: ---
-
-
--- Database creation must be done outside a multicommand file.
--- These commands were put in this file only as a convenience.
--- -- object: new_database | type: DATABASE --
--- -- DROP DATABASE IF EXISTS new_database;
--- CREATE DATABASE new_database;
--- -- ddl-end --
--- 
-
 -- object: entradas | type: SCHEMA --
 -- DROP SCHEMA IF EXISTS entradas CASCADE;
 CREATE SCHEMA entradas;
