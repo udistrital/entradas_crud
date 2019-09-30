@@ -24,7 +24,7 @@ pipeline:
      - go get -u github.com/beego/bee
      - bee migrate -driver=postgres -conn="postgres://$${PG_ADMINISTRATIVA_USER}:$${PG_ADMINISTRATIVA_PASSWORD}@$${PG_ADMINISTRATIVA_URL}:5432/$${PG_ADMINISTRATIVA_DBNAME}?sslmode=disable"
     when:
-      branch: [master]
+      branch: [test]
 
   # rollback beego migration if it fails
   beego_rollback:
@@ -36,7 +36,7 @@ pipeline:
      - bee migrate rollback -driver=postgres -conn="postgres://$${PG_ADMINISTRATIVA_USER}:$${PG_ADMINISTRATIVA_PASSWORD}@$${PG_ADMINISTRATIVA_URL}:5432/$${PG_ADMINISTRATIVA_DBNAME}?sslmode=disable"
     when:
       status: [failure]
-      branch: [master]
+      branch: [test]
       
       
   # build and push docker image to docker hub
