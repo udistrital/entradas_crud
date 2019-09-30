@@ -38,6 +38,7 @@ pipeline:
       status: [failure]
       branch: [master]
       
+      
   # build and push docker image to docker hub
   publish_dockerhub:
     image: plugins/docker
