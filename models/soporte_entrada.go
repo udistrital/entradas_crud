@@ -10,57 +10,48 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type EntradaElemento struct {
-	Id                  int          `orm:"column(id);pk;auto"`
-	Solicitante         int          `orm:"column(solicitante);null"`
-	Observacion         string       `orm:"column(observacion);null"`
-	Importacion         bool         `orm:"column(importacion);null"`
-	FechaCreacion       time.Time    `orm:"auto_now;column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion   time.Time    `orm:"auto_now;column(fecha_modificacion);type(timestamp without time zone)"`
-	Activo              bool         `orm:"column(activo)"`
-	TipoEntradaId       *TipoEntrada `orm:"column(tipo_entrada_id);rel(fk)"`
-	ActaRecibidoId      int          `orm:"column(acta_recibido_id)"`
-	ContratoId          int          `orm:"column(contrato_id);null"`
-	ElementoId          int          `orm:"column(elemento_id);null"`
-	DocumentoContableId int          `orm:"column(documento_contable_id)"`
-	Consecutivo         string       `orm:"column(consecutivo)"`
-	Vigencia            string       `orm:"column(vigencia)"`
-	OrdenadorId         int          `orm:"column(ordenador_id);null"`
+type SoporteEntrada struct {
+	Id                int              `orm:"column(id);pk;auto"`
+	DocumentoId       int              `orm:"column(documento_id)"`
+	Activo            bool             `orm:"column(activo)"`
+	FechaCreacion     time.Time        `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion time.Time        `orm:"auto_now;column(fecha_modificacion);type(timestamp without time zone)"`
+	EntradaElementoId *EntradaElemento `orm:"auto_now;column(entrada_elemento_id);rel(fk)"`
 }
 
-func (t *EntradaElemento) TableName() string {
-	return "entrada_elemento"
+func (t *SoporteEntrada) TableName() string {
+	return "soporte_entrada"
 }
 
 func init() {
-	orm.RegisterModel(new(EntradaElemento))
+	orm.RegisterModel(new(SoporteEntrada))
 }
 
-// AddEntradaElemento insert a new EntradaElemento into database and returns
+// AddSoporteEntrada insert a new SoporteEntrada into database and returns
 // last inserted Id on success.
-func AddEntradaElemento(m *EntradaElemento) (id int64, err error) {
+func AddSoporteEntrada(m *SoporteEntrada) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetEntradaElementoById retrieves EntradaElemento by Id. Returns error if
+// GetSoporteEntradaById retrieves SoporteEntrada by Id. Returns error if
 // Id doesn't exist
-func GetEntradaElementoById(id int) (v *EntradaElemento, err error) {
+func GetSoporteEntradaById(id int) (v *SoporteEntrada, err error) {
 	o := orm.NewOrm()
-	v = &EntradaElemento{Id: id}
+	v = &SoporteEntrada{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllEntradaElemento retrieves all EntradaElemento matches certain condition. Returns empty list if
+// GetAllSoporteEntrada retrieves all SoporteEntrada matches certain condition. Returns empty list if
 // no records exist
-func GetAllEntradaElemento(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllSoporteEntrada(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(EntradaElemento)).RelatedSel()
+	qs := o.QueryTable(new(SoporteEntrada)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -110,7 +101,7 @@ func GetAllEntradaElemento(query map[string]string, fields []string, sortby []st
 		}
 	}
 
-	var l []EntradaElemento
+	var l []SoporteEntrada
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -133,11 +124,11 @@ func GetAllEntradaElemento(query map[string]string, fields []string, sortby []st
 	return nil, err
 }
 
-// UpdateEntradaElemento updates EntradaElemento by Id and returns error if
+// UpdateSoporteEntrada updates SoporteEntrada by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateEntradaElementoById(m *EntradaElemento) (err error) {
+func UpdateSoporteEntradaById(m *SoporteEntrada) (err error) {
 	o := orm.NewOrm()
-	v := EntradaElemento{Id: m.Id}
+	v := SoporteEntrada{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -148,15 +139,15 @@ func UpdateEntradaElementoById(m *EntradaElemento) (err error) {
 	return
 }
 
-// DeleteEntradaElemento deletes EntradaElemento by Id and returns error if
+// DeleteSoporteEntrada deletes SoporteEntrada by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteEntradaElemento(id int) (err error) {
+func DeleteSoporteEntrada(id int) (err error) {
 	o := orm.NewOrm()
-	v := EntradaElemento{Id: id}
+	v := SoporteEntrada{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&EntradaElemento{Id: id}); err == nil {
+		if num, err = o.Delete(&SoporteEntrada{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
