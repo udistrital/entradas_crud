@@ -27,6 +27,12 @@ func init() {
 				&controllers.TipoEntradaController{},
 			),
 		),
+
+		beego.NSNamespace("/soporte_entrada",
+			beego.NSInclude(
+				&controllers.SoporteEntradaController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }
