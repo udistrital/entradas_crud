@@ -15,7 +15,7 @@ type EntradaElemento struct {
 	Solicitante         int          `orm:"column(solicitante);null"`
 	Observacion         string       `orm:"column(observacion);null"`
 	Importacion         bool         `orm:"column(importacion);null"`
-	FechaCreacion       time.Time    `orm:"auto_now;column(fecha_creacion);type(timestamp without time zone)"`
+	FechaCreacion       time.Time    `orm:"auto_now_add;column(fecha_creacion);type(timestamp without time zone)"`
 	FechaModificacion   time.Time    `orm:"auto_now;column(fecha_modificacion);type(timestamp without time zone)"`
 	Activo              bool         `orm:"column(activo)"`
 	TipoEntradaId       *TipoEntrada `orm:"column(tipo_entrada_id);rel(fk)"`
