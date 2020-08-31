@@ -10,51 +10,48 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type TipoEntrada struct {
-	Id                int       `orm:"column(id);pk;auto"`
-	Nombre            string    `orm:"column(nombre)"`
-	Descripcion       string    `orm:"column(descripcion);null"`
-	CodigoAbreviacion string    `orm:"column(codigo_abreviacion);null"`
-	Activo            bool      `orm:"column(activo)"`
-	NumeroOrden       float64   `orm:"column(numero_orden);null"`
-	Clasificacion     string    `orm:"column(clasificacion);null"`
-	FechaCreacion     time.Time `orm:"auto_now_add;column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion time.Time `orm:"auto_now;column(fecha_modificacion);type(timestamp without time zone)"`
+type SoporteEntrada struct {
+	Id                int              `orm:"column(id);pk;auto"`
+	DocumentoId       int              `orm:"column(documento_id)"`
+	Activo            bool             `orm:"column(activo)"`
+	FechaCreacion     time.Time        `orm:"auto_now_add;column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion time.Time        `orm:"auto_now;column(fecha_modificacion);type(timestamp without time zone)"`
+	EntradaElementoId *EntradaElemento `orm:"column(entrada_elemento_id);rel(fk)"`
 }
 
-func (t *TipoEntrada) TableName() string {
-	return "tipo_entrada"
+func (t *SoporteEntrada) TableName() string {
+	return "soporte_entrada"
 }
 
 func init() {
-	orm.RegisterModel(new(TipoEntrada))
+	orm.RegisterModel(new(SoporteEntrada))
 }
 
-// AddTipoEntrada insert a new TipoEntrada into database and returns
+// AddSoporteEntrada insert a new SoporteEntrada into database and returns
 // last inserted Id on success.
-func AddTipoEntrada(m *TipoEntrada) (id int64, err error) {
+func AddSoporteEntrada(m *SoporteEntrada) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetTipoEntradaById retrieves TipoEntrada by Id. Returns error if
+// GetSoporteEntradaById retrieves SoporteEntrada by Id. Returns error if
 // Id doesn't exist
-func GetTipoEntradaById(id int) (v *TipoEntrada, err error) {
+func GetSoporteEntradaById(id int) (v *SoporteEntrada, err error) {
 	o := orm.NewOrm()
-	v = &TipoEntrada{Id: id}
+	v = &SoporteEntrada{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllTipoEntrada retrieves all TipoEntrada matches certain condition. Returns empty list if
+// GetAllSoporteEntrada retrieves all SoporteEntrada matches certain condition. Returns empty list if
 // no records exist
-func GetAllTipoEntrada(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllSoporteEntrada(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(TipoEntrada)).RelatedSel()
+	qs := o.QueryTable(new(SoporteEntrada)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -104,7 +101,7 @@ func GetAllTipoEntrada(query map[string]string, fields []string, sortby []string
 		}
 	}
 
-	var l []TipoEntrada
+	var l []SoporteEntrada
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -127,11 +124,11 @@ func GetAllTipoEntrada(query map[string]string, fields []string, sortby []string
 	return nil, err
 }
 
-// UpdateTipoEntrada updates TipoEntrada by Id and returns error if
+// UpdateSoporteEntrada updates SoporteEntrada by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateTipoEntradaById(m *TipoEntrada) (err error) {
+func UpdateSoporteEntradaById(m *SoporteEntrada) (err error) {
 	o := orm.NewOrm()
-	v := TipoEntrada{Id: m.Id}
+	v := SoporteEntrada{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -142,15 +139,15 @@ func UpdateTipoEntradaById(m *TipoEntrada) (err error) {
 	return
 }
 
-// DeleteTipoEntrada deletes TipoEntrada by Id and returns error if
+// DeleteSoporteEntrada deletes SoporteEntrada by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteTipoEntrada(id int) (err error) {
+func DeleteSoporteEntrada(id int) (err error) {
 	o := orm.NewOrm()
-	v := TipoEntrada{Id: id}
+	v := SoporteEntrada{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&TipoEntrada{Id: id}); err == nil {
+		if num, err = o.Delete(&SoporteEntrada{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
