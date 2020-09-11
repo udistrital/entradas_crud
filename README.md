@@ -75,7 +75,7 @@ Pruebas unitarias
 
 | Develop | Relese 0.0.1 | Master |
 | -- | -- | -- |
-|1|2|3|
+| [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/entradas_crud/status.svg?ref=refs/heads/develop)](https://hubci.portaloas.udistrital.edu.co/udistrital/entradas_crud) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/entradas_crud/status.svg?ref=refs/heads/release/0.0.1)](https://hubci.portaloas.udistrital.edu.co/udistrital/entradas_crud) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/entradas_crud/status.svg)](https://hubci.portaloas.udistrital.edu.co/udistrital/entradas_crud) |
 
 ## Modelo de Datos
 [Modelo de Datos API CRUD Novedades](https://user-images.githubusercontent.com/23342808/61749331-1e6a5580-ad68-11e9-8698-8523ffe3f792.png)
