@@ -3,7 +3,7 @@
 CREATE SCHEMA entradas;
 -- ddl-end --
 
-SET search_path TO pg_catalog,public,entradas;
+SET search_path TO public,entradas;
 -- ddl-end --
 
 -- object: entradas.entrada_elemento | type: TABLE --
@@ -77,8 +77,3 @@ ALTER TABLE entradas.entrada_elemento ADD CONSTRAINT fk_entrada_elemento_tipo_en
 REFERENCES entradas.tipo_entrada (id) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
-
--- Permisos de usuario
-GRANT USAGE ON SCHEMA entradas TO desarrollooas;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA entradas TO desarrollooas;
-GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA entradas TO desarrollooas;
