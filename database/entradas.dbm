@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.2" last-position="0,0" last-zoom="1" max-obj-count="4"
+	 default-schema="public" default-owner="postgres">
+<role name="test"
+      superuser="true"
+      createdb="true"
+      replication="true"
+      createrole="true"
+      inherit="true"
+      login="true"
+      bypassrls="true"
+      encrypted="true"
+      password="********"
+      sql-disabled="true">
+</role>
+
+<database name="test" encoding="UTF8" lc-collate="en_US.utf8" lc-ctype="en_US.utf8" is-template="false" allow-conns="true">
+	<role name="test"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" layer="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="entradas" layer="0" rect-visible="true" fill-color="#a284e4">
+</schema>
+
+<sequence name="entrada_elemento_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="entradas"/>
+	<role name="test"/>
+</sequence>
+
+<table name="entrada_elemento" layer="0" collapse-mode="2" max-obj-count="18">
+	<schema name="entradas"/>
+	<comment><![CDATA[Tabla para almacenar la información requerida para el procedimiento de Entrada de un elemento. Los campos se permiten NULL puesto que hay varios tipos de entrada y no todos requieren la misma información.]]></comment>
+	<position x="660" y="260"/>
+	<column name="id" not-null="true" sequence="entradas.entrada_elemento_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="solicitante">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Campo para almacenar el solicitante de la entrada. Solo aploca para una entrada por SOBRANTES.]]></comment>
+	</column>
+	<column name="observacion">
+		<type name="character varying" length="250"/>
+		<comment><![CDATA[Campo para almacenar las observaciones a tener en cuenta al momento de realizar una entrada.]]></comment>
+	</column>
+	<column name="importacion">
+		<type name="boolean" length="0"/>
+		<comment><![CDATA[Campo que permite almacenar si una entrada por ADQUSICIÓN es de importación.]]></comment>
+	</column>
+	<column name="fecha_creacion" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Fecha en la que se registra la entrada. Para llevar una trazabilidad.]]></comment>
+	</column>
+	<column name="fecha_modificacion" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Campo para almacenar la fecha en que se realiza una modificación. Para llevar una Trazabilidad.]]></comment>
+	</column>
+	<column name="activo" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="tipo_entrada_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="acta_recibido_id" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Referencia al Acta de recibido, se utiliza para todos los tipos de entradas.]]></comment>
+	</column>
+	<column name="contrato_id">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Campo para almacenar el contrato que referencia los elementos a los cuales se les hará una entrada. Se referencia de ARGO. Es utilizado para una entrada por ADQUISICIÓN y TERCEROS.]]></comment>
+	</column>
+	<column name="elemento_id">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Campo para almacenar la placa de los elementos a los cuales se les hará entrada. Solo aplica para REPOSICIÓN. Estos elementos son diferentes a los que vienen del acta de recibido. Se busca obtener la PLACA del elemento asociada al movimiento.]]></comment>
+	</column>
+	<column name="documento_contable_id" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Campo para relacionar el documento contable (P8) a la entrada. Se referencia de KRONOS]]></comment>
+	</column>
+	<column name="consecutivo" not-null="true">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="vigencia" not-null="true">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="ordenador_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="pk_entrada" type="pk-constr" table="entradas.entrada_elemento">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="tipo_entrada_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="entradas"/>
+	<role name="test"/>
+</sequence>
+
+<table name="tipo_entrada" layer="0" collapse-mode="2" max-obj-count="10">
+	<schema name="entradas"/>
+	<comment><![CDATA[Tabla paramétrica para almacenar los diferentes tipos de entradas. Pueden ser: SOBRANTE, PRODUCCIÓN PROPIA, RECUPERACIÓN, DONACIÓN, ADQUISICIÓN.]]></comment>
+	<position x="160" y="420"/>
+	<column name="id" not-null="true" sequence="entradas.tipo_entrada_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="descripcion">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="codigo_abreviacion">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="activo" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="numero_orden">
+		<type name="numeric" length="5" precision="2"/>
+	</column>
+	<column name="clasificacion">
+		<type name="character varying" length="0"/>
+		<comment><![CDATA[Para tipificar si es interno o externo]]></comment>
+	</column>
+	<column name="fecha_creacion" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Campo para almacenar la fecha en que se realiza el registro. Permite llevar una trazabilidad.]]></comment>
+	</column>
+	<column name="fecha_modificacion" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Campo para almacenar las fechas en que se realizan cambios. Permite llevar una trazabilidad.]]></comment>
+	</column>
+	<constraint name="pk_tipo_entrada" type="pk-constr" table="entradas.tipo_entrada">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="soporte_entrada_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="entradas"/>
+	<role name="test"/>
+</sequence>
+
+<table name="soporte_entrada" layer="0" collapse-mode="2" max-obj-count="7">
+	<schema name="entradas"/>
+	<position x="1200" y="460"/>
+	<column name="id" not-null="true" sequence="entradas.soporte_entrada_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="documento_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="activo" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="fecha_creacion" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="fecha_modificacion" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="entrada_elemento_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="pk_soporte_entrada" type="pk-constr" table="entradas.soporte_entrada">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="fk_entrada_elemento_tipo_entrada" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="entradas.tipo_entrada" table="entradas.entrada_elemento">
+	<columns names="tipo_entrada_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_soporte_entrada_entrada_elemento" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="SET NULL" ref-table="entradas.entrada_elemento" table="entradas.soporte_entrada">
+	<columns names="entrada_elemento_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_entrada_elemento_tipo_entrada" type="relfk" layer="0"
+	 custom-color="#52cf9f"
+	 src-table="entradas.entrada_elemento"
+	 dst-table="entradas.tipo_entrada" reference-fk="fk_entrada_elemento_tipo_entrada"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_soporte_entrada_entrada_elemento" type="relfk" layer="0"
+	 custom-color="#acbb6e"
+	 src-table="entradas.soporte_entrada"
+	 dst-table="entradas.entrada_elemento" reference-fk="fk_soporte_entrada_entrada_elemento"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>

@@ -5,12 +5,14 @@ API CRUD para el módulo de entradas del sistema ARKA II.
 ## Especificaciones Técnicas
 
 ### Tecnologías Implementadas y Versiones
-* [Golang](https://github.com/udistrital/introduccion_oas/blob/master/instalacion_de_herramientas/golang.md)
-* [BeeGo](https://github.com/udistrital/introduccion_oas/blob/master/instalacion_de_herramientas/beego.md)
-* [Docker](https://docs.docker.com/engine/install/ubuntu/)
-* [Docker Compose](https://docs.docker.com/compose/)
+
+- [Golang](https://github.com/udistrital/introduccion_oas/blob/master/instalacion_de_herramientas/golang.md)
+- [BeeGo](https://github.com/udistrital/introduccion_oas/blob/master/instalacion_de_herramientas/beego.md)
+- [Docker](https://docs.docker.com/engine/install/ubuntu/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
 ### Variables de Entorno
+
 ```shell
 ENTRADAS_CRUD_PGDB=[nombre de la base de datos]
 ENTRADAS_CRUD_PGPASS=[password del usuario]
@@ -20,9 +22,10 @@ ENTRADAS_CRUD_PGSCHEMA=[esquema donde se ubican las tablas]
 ENTRADAS_CRUD_HTTP_PORT=[puerto de ejecucion] bee run
 ```
 
-**NOTA:** Las variables se pueden ver en el fichero conf/app.conf y están identificadas con ENTRADAS_CRUD_...
+**NOTA:** Las variables se pueden ver en el fichero conf/app.conf y están identificadas con `ENTRADAS_CRUD_...`
 
 ### Ejecución del Proyecto
+
 ```shell
 #1. Obtener el repositorio con Go
 go get github.com/udistrital/entradas_crud
@@ -38,12 +41,14 @@ ENTRADAS_CRUD_PORT=8080 ENTRADAS_CRUD_DB_HOST=127.0.0.1:27017 ENTRADAS_CRUD_SOME
 ```
 
 ### Ejecución Dockerfile
+
 ```shell
 # docker build --tag=entradas_crud . --no-cache
 # docker run -p 80:80 entradas_crud
 ```
 
 ### Ejecución docker-compose
+
 ```shell
 #1. Clonar el repositorio
 git clone -b develop https://github.com/udistrital/entradas_crud
@@ -68,18 +73,21 @@ docker ps
 ### Ejecución Pruebas
 
 Pruebas unitarias
+
 ```shell
 # Not Data
 ```
+
 ## Estado CI
 
 | Develop | Relese 0.0.1 | Master |
 | -- | -- | -- |
-| [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/entradas_crud/status.svg?ref=refs/heads/develop)](https://hubci.portaloas.udistrital.edu.co/udistrital/entradas_crud) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/entradas_crud/status.svg?ref=refs/heads/release/0.0.1)](https://hubci.portaloas.udistrital.edu.co/udistrital/entradas_crud) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/entradas_crud/status.svg)](https://hubci.portaloas.udistrital.edu.co/udistrital/entradas_crud) |
+| [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/entradas_crud/status.svg?ref=refs/heads/develop)](https://hubci.portaloas.udistrital.edu.co/udistrital/entradas_crud) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/entradas_crud/status.svg?ref=refs/heads/release/0.0.1)](https://hubci.portaloas.udistrital.edu.co/udistrital/entradas_crud) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/entradas_crud/status.svg?ref=refs/heads/master)](https://hubci.portaloas.udistrital.edu.co/udistrital/entradas_crud) |
 
 ## Modelo de Datos
-[Modelo de Datos API CRUD Novedades](https://user-images.githubusercontent.com/23342808/61749331-1e6a5580-ad68-11e9-8698-8523ffe3f792.png)
 
+[SVG](database/entradas.svg) -
+[PGmodeler](database/entradas.dbm)
 
 ## Licencia
 
