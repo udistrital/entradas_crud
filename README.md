@@ -86,7 +86,8 @@ Pruebas unitarias
 
 ## Modelo de Datos
 
-[Modelo de Datos API CRUD Novedades](https://user-images.githubusercontent.com/23342808/61749331-1e6a5580-ad68-11e9-8698-8523ffe3f792.png)
+[SVG](database/entradas.svg) -
+[PGmodeler](database/entradas.dbm)
 
 ## Licencia
 
